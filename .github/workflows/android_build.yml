@@ -25,7 +25,10 @@ jobs:
         run: ./gradlew compileDebugSources
 
       - name: Unit Test
-        run: ./gradlew lintDebug testDebug
+        run: ./gradlew lintDebug
+
+      - name: Unit Test
+        run: ./gradlew testDebug
 
       - name: Build project
         run: ./gradlew assembleDebug
