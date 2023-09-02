@@ -1,0 +1,31 @@
+name: Android PR
+
+on:
+  pull_request:
+    branches:
+      - main
+      - origin/release/*
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: '11'
+          distribution: 'adopt'
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: Compile
+        run: ./gradlew compileDebugSources
+
+      - name: Unit Test
+        run: ./gradlew lintDebug testDebug
+
+      - name: Build project
+        run: ./gradlew assembleDebug
