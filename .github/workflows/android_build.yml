@@ -4,7 +4,7 @@ on:
   pull_request:
     branches:
       - main
-      - origin/release/*
+      - release/*
 
 jobs:
   build:
