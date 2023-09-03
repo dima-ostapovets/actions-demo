@@ -17,6 +17,7 @@ jobs:
         with:
           java-version: '17'
           distribution: 'adopt'
+          cache: 'gradle'
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
@@ -34,4 +35,4 @@ jobs:
         run: ./gradlew assembleDebug
 
       - name: Upload APK
-        run: echo "Let's imagine we're uploading the APK ${{github.run_number}} to a firebase..."
+        run: echo "Let's imagine we're uploading the APK ${{github.run_attempt}} to a firebase..."
