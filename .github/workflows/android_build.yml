@@ -24,7 +24,7 @@ jobs:
       - name: Compile
         run: ./gradlew compileDebugSources
 
-      - name: Unit Test
+      - name: Lint
         run: ./gradlew lintDebug
 
       - name: Unit Test
