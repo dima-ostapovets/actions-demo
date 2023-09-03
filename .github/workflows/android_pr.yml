@@ -1,7 +1,7 @@
-name: Android Build
+name: Android PR
 
 on:
-  push:
+  pull_request:
     branches:
       - main
       - release/*
@@ -33,6 +33,3 @@ jobs:
 
       - name: Build project
         run: ./gradlew assembleDebug
-
-      - name: Upload APK
-        run: echo "Let's imagine we're uploading the APK ${{github.run_number}} to a firebase..."
