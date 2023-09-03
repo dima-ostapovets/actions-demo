@@ -1,0 +1,42 @@
+name: Android Build
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Define branch name'
+        required: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'adopt'
+          cache: 'gradle'
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: Compile
+        run: ./gradlew compileDebugSources
+
+      - name: Lint
+        run: ./gradlew lintDebug
+
+      - name: Unit Test
+        run: ./gradlew testDebug
+
+      - name: Build project
+        run: ./gradlew assembleDebug
+
+      - name: Upload APK to Firebase
+        run: echo "Let's imagine we're uploading the APK ${{github.run_number}} to a firebase..."
+
+      - name: Upload APK to Google Play
+        run: echo "Let's imagine we're uploading the APK ${{github.run_number}} to a Google Play..."
